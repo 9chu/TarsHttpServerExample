@@ -34,9 +34,7 @@ void HttpServant::destroy()
 int HttpServant::doRequest(TarsCurrentPtr current, std::vector<char>& buffer)
 {
     TC_HttpRequest request;
-    string requestBuffer;
-    requestBuffer.assign(current->getRequestBuffer().data(), current->getRequestBuffer().size());
-    request.decode(requestBuffer);
+    request.decode(current->getRequestBuffer().data(), current->getRequestBuffer().size());
 
     TC_HttpResponse response;
     string responseBuffer = "Hello world!";
