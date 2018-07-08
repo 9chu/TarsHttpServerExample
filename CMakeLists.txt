@@ -11,7 +11,9 @@ add_subdirectory(3rd/TarsServant)
 #link_directories(${MYSQL_LIB_DIR})
 
 add_executable(TarsHttpServerExample src/Main.cpp src/App.cpp src/HttpServant.cpp)
-target_link_libraries(TarsHttpServerExample tarsutil tarsservant)
+target_link_libraries(TarsHttpServerExample tarsutil tarsservant -static-libgcc -static-libstdc++ -static)
 #target_link_libraries(TarsHttpServerExample ${MYSQL_LIBRARIES})
 
 tars_generate_tar(TarsHttpServerExample)
+tars_upload_tar("http://192.168.255.2:8080" test TarsHttpServerExample)
+tars_auto_deploy_tar("http://192.168.255.2:8080" test TarsHttpServerExample)
